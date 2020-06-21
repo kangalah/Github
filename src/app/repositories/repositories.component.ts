@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SearchRequestService } from '../search-request.service';
+import { Repository } from '../repository';
+import { from } from 'rxjs';
+
 @Component({
   selector: 'app-repositories',
   templateUrl: './repositories.component.html',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RepositoriesComponent implements OnInit {
 
-  constructor() { }
+  repository:Repository;
+  public searchRepo:string;
 
-  ngOnInit(): void {
+  searchRepos(ange) {
+    this.searchRepo = '';
+  }
+
+  constructor(public gitRepoRequest: SearchRequestService ) { }
+
+  ngOnInit() { 
+    this.gitRepoRequest.gitRepos(this.searchRepo);
   }
 
 }
