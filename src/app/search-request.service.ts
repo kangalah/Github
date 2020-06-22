@@ -15,7 +15,7 @@ export class SearchRequestService {
   searchRepo: any;
 
   constructor(private http: HttpClient) { 
-    this.repository = new Repository(  '', new Date ());
+    this.repository = new Repository( '', '', new Date ());
     this.users = new Users ('', '', '', 0, '', new Date(), 0, 0);
   }
   githubUser(searchName){
@@ -31,7 +31,7 @@ export class SearchRequestService {
     }
     const promise = new Promise((resolve) => {
       this.http.get<ApiResponse>('https://api.github.com/users/' + searchName + '?access_token=' + environment.miApi).toPromise().then(getResponse => {
-          // this.users.name = getResponse.name;
+          
           this.users.html_url = getResponse.html_url;
           this.users.login = getResponse.login;
           this.users.avatar_url = getResponse.avatar_url;
