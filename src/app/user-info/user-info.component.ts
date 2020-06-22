@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchRequestService } from '../search-request.service';
-import { Repository } from '../repository';
-import { Users } from '../users';
+import {SearchRequestService} from '../search-request.service';
+import {Repository} from '../repository';
+import {Users} from '../users';
 
 @Component({
   selector: 'app-user-info',
@@ -11,25 +11,27 @@ import { Users } from '../users';
 })
 export class UserInfoComponent implements OnInit {
 
-  public searchme = 'kangalah';
+  public searchMe = 'kangalah';
   public githubUser: string;
 
-  users: Users;
+
+  users: Users ;
   repository: Repository;
 
+
   findUser(username) {
-    this.githubUser = '';
-    this.searchme = username;
-    this.ngOnInit();
+      this.githubUser = '';
+      this.searchMe  = username;
+      this.ngOnInit();
   }
 
-  constructor(public githubUserRequest: SearchRequestService, public userRepos: SearchRequestService) { }
 
-  ngOnInit() {
-    this.githubUserRequest.githubUser(this.searchme);
+constructor(public githubUserRequest: SearchRequestService, public userRepos: SearchRequestService) { }
+
+ngOnInit() {
+    this.githubUserRequest.githubUser(this.searchMe);
     this.users = this.githubUserRequest.users;
-    this.userRepos.gitUserRepos(this.searchme);
+    this.userRepos.gitUserRepos(this.searchMe);
     console.log(this.userRepos);
-  }
-
+}
 }
